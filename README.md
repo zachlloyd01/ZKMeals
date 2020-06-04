@@ -10,5 +10,5 @@
 * Run yarn install jquery
 * Finally, to start the server, run rails s
 
-##ZKMeals
+## ZKMeals
 * An Uber-like service for getting food to college students
