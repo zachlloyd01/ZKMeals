@@ -6,4 +6,8 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
+  def newProduct
+
+  end
+
 end

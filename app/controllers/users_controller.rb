@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new
     @user.name = params["name"]
     @user.email = params["email"]
-    @user.password_digest = params["password"]
+    @user.password = params["password"]
     @user.school = params["school"]
     @user.address = params["address"]
     @user.role = "user"
