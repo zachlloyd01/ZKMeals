@@ -7,7 +7,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="newProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Add new Product</h5>
@@ -20,24 +20,28 @@
 
         <div class="form-group">
           <%= label_tag :name %>
-          <%= text_field :name, type: "text", class: "form-control", placeholder: "Fried Placenta..." %>
+          <%= text_field_tag :name, "", type: "text", class: "form-control", placeholder: "Fried Placenta..." %>
         </div>
 
         <div class="form-group">
           <%= label_tag :image %>
-          <%= file_field :image, class: "form-control", placeholder: "UC San Diego..." %>
+          <div class="custom-file">
+            <%= file_field_tag :image, class: "custom-file-input" %>
+           <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
         </div>
 
         <div class="form-group">
           <%= label_tag :ingredients %>
-          <%= text_field :ingredients, type: "text", class: "form-control", placeholder: "Cyanide, Happiness..." %>
+          <%= text_field_tag :ingredients, "", type: "text", class: "form-control", placeholder: "Cyanide, Happiness..." %>
         </div>
 
         <div class="form-group">
           <%= label_tag :description %>
-          <%= text_area :description, class: "form-control", placeholder: "A deep fried placenta dusted with cyanide..." %>
+          <%= text_area_tag :description, "", class: "form-control", placeholder: "A deep fried placenta dusted with cyanide...", style: "resize: none;" %>
         </div>
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <%= submit_tag 'Create', class: "btn btn-success mb-2", style: "float: right;" %>
@@ -46,6 +50,14 @@
     </div>
   </div>
 </div>
+
+<script>
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
 
 <% @products.each do |p| %>
 
