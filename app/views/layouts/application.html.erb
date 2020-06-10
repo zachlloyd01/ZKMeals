@@ -24,6 +24,13 @@
           <li class="nav-item">
             <a class="nav-link" href="/meals">Meals</a>
           </li>
+          <% if logged_in? and current_user.role == "admin" %>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">Admin</a>
+          </li>
+          <% end %>
+
+
           <% if not logged_in? %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
