@@ -4,6 +4,10 @@ class AdminController < ApplicationController
     @products = Product.all
   end
 
+  def new
+    @product = Product.new
+  end
+
   def create
     @product = Product.new
     @product.name = params["name"]
@@ -11,6 +15,7 @@ class AdminController < ApplicationController
     @product.description = params["ingredients"]
     @product.image = params["image"]
     @product.save
+    redirect_to '/admin'
   end
 
 end

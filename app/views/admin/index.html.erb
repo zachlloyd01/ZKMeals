@@ -5,7 +5,7 @@
   Add new Product
 </button>
 
-<!-- Modal -->
+<!-- New Product Modal -->
 <div class="modal fade" id="newProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -16,29 +16,26 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= form_tag url: "/newProduct", method: :post do %>
+        <%= form_with model: @product, method: :post do |f| %>
 
         <div class="form-group">
-          <%= label_tag :name %>
-          <%= text_field_tag :name, "", type: "text", class: "form-control", placeholder: "Fried Placenta..." %>
+          <%= f.label :name %>
+          <%= f.text_field :name, type: "text", class: "form-control", placeholder: "Fried Placenta..." %>
         </div>
 
         <div class="form-group">
-          <%= label_tag :image %>
-          <div class="custom-file">
-            <%= file_field_tag :image, class: "custom-file-input" %>
-           <label class="custom-file-label" for="customFile">Choose file</label>
-          </div>
+          <%= f.label :image %>
+          <%= f.file_field :image, class: "image-upload" %>
         </div>
 
         <div class="form-group">
-          <%= label_tag :ingredients %>
-          <%= text_field_tag :ingredients, "", type: "text", class: "form-control", placeholder: "Cyanide, Happiness..." %>
+          <%= f.label :ingredients %>
+          <%= f.text_field :ingredients, type: "text", class: "form-control", placeholder: "Cyanide, Happiness..." %>
         </div>
 
         <div class="form-group">
-          <%= label_tag :description %>
-          <%= text_area_tag :description, "", class: "form-control", placeholder: "A deep fried placenta dusted with cyanide...", style: "resize: none;" %>
+          <%= f.label :description %>
+          <%= f.text_area :description, class: "form-control", placeholder: "A deep fried placenta dusted with cyanide...", style: "resize: none;" %>
         </div>
       </div>
 
@@ -51,24 +48,21 @@
   </div>
 </div>
 
-<script>
-// Add the following code if you want the name of the file appear on select
-$(".custom-file-input").on("change", function() {
-  var fileName = $(this).val().split("\\").pop();
-  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-});
-</script>
+<section>
 
-<% @products.each do |p| %>
+  <!-- For each product create a product card with an edit -->
+  <% @products.each do |p| %>
 
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="p.image" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">p.name</h5>
-    <p class="card-text">p.ingredients</p>
-    <p class="card-text">p.description</p>
-    <a href="#" class="btn btn-success">Go somewhere</a>
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="<%= url_for(p.image) %>">
+    <div class="card-body">
+      <h5 class="card-title"><%= p.name %></h5>
+      <p class="card-text"><%= p.ingredients %></p>
+      <p class="card-text"><%= p.description %></p>
+      <a href="#" class="btn btn-success">Edit Product</a>
+    </div>
   </div>
-</div>
 
-<% end %>
+  <% end %>
+
+</section>
